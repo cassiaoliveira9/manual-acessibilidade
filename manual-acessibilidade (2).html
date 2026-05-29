@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Acessibilidade Digital — Padrão Digital de Governo</title>
+<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --color-primary:#1351b4;
+  --color-primary-dark:#0c326f;
+  --color-primary-light:#2670e8;
+  --color-primary-pastel:#dbe8fb;
+  --color-green:#168821;
+  --color-green-light:#d4edda;
+  --color-yellow:#ffcd07;
+  --color-yellow-light:#fff9d6;
+  --color-red:#e52207;
+  --color-red-light:#fde8e5;
+  --color-gray-900:#1b1b1b;
+  --color-gray-700:#444;
+  --color-gray-500:#888;
+  --color-gray-300:#ccc;
+  --color-gray-100:#f8f8f8;
+  --color-white:#fff;
+  --surface-bg:#f0f2f5;
+  --font-title:"Raleway",sans-serif;
+  --font-body:"Rawline","Raleway",sans-serif;
+  --shadow-sm:0 1px 3px rgba(19,81,180,.08);
+  --shadow-md:0 4px 12px rgba(19,81,180,.12);
+  --radius-sm:4px;
+  --radius-md:8px;
+  --radius-lg:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);font-size:1rem;line-height:1.65;color:var(--color-gray-900);background:var(--surface-bg)}
+a{color:var(--color-primary)}
+a:hover{color:var(--color-primary-dark)}
+code{font-family:"Courier New",monospace;font-size:.85em;background:var(--color-primary-pastel);color:var(--color-primary-dark);padding:1px 5px;border-radius:var(--radius-sm)}
+
+/* SKIP LINK */
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--color-primary);color:#fff;padding:8px 16px;border-radius:var(--radius-sm);font-size:.875rem;font-weight:700;text-decoration:none;z-index:9999;transition:top .2s}
+.skip-link:focus{top:16px}
+
+/* HEADER */
+.site-header{background:var(--color-primary-dark);color:#fff;padding:64px 40px 56px;position:relative;overflow:hidden}
+.site-header::after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--color-yellow) 0%,var(--color-green) 50%,var(--color-primary-light) 100%)}
+.header-inner{max-width:1040px;margin:0 auto}
+.header-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-yellow);margin-bottom:16px}
+.site-header h1{font-family:var(--font-title);font-size:clamp(2rem,5vw,2.75rem);font-weight:800;line-height:1.15;color:#fff;margin-bottom:16px}
+.site-header h1 span{color:#fff}
+.header-desc{font-size:1.125rem;font-weight:300;color:#fff;max-width:600px;line-height:1.7;margin-bottom:28px}
+.header-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.tag-dev{background:rgba(22,136,33,.2);color:#7ee68c;border:1px solid rgba(22,136,33,.4)}
+.tag-design{background:rgba(38,112,232,.2);color:#91b8f7;border:1px solid rgba(38,112,232,.4)}
+.tag-content{background:rgba(255,205,7,.15);color:#ffcd07;border:1px solid rgba(255,205,7,.35)}
+
+/* NAV */
+.site-nav{position:sticky;top:0;z-index:200;background:var(--color-primary);box-shadow:var(--shadow-md)}
+.nav-inner{max-width:1040px;margin:0 auto;padding:0 40px;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.site-nav a{display:inline-flex;align-items:center;gap:8px;padding:14px 16px;color:#fff;font-size:.875rem;font-weight:600;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:color .2s,border-color .2s}
+.site-nav a:hover{color:#fff}
+.site-nav a.nav-dev:hover{border-color:var(--color-green)}
+.site-nav a.nav-design:hover{border-color:var(--color-yellow)}
+.site-nav a.nav-content:hover{border-color:#f9a8d4}
+.site-nav a.nav-check:hover{border-color:rgba(255,255,255,.6)}
+
+/* MAIN */
+main{max-width:1040px;margin:0 auto;padding:52px 40px 80px}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--color-gray-300)}
+.section-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:100px;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0}
+.badge-dev{background:var(--color-green-light);color:var(--color-green);border:2px solid var(--color-green)}
+.badge-design{background:var(--color-primary-pastel);color:var(--color-primary-dark);border:2px solid var(--color-primary)}
+.badge-content{background:var(--color-yellow-light);color:#7a5f00;border:2px solid var(--color-yellow)}
+.section-head h2{font-family:var(--font-title);font-size:1.5rem;font-weight:700;color:var(--color-gray-900)}
+.section-head p{font-size:.875rem;color:var(--color-gray-700);margin-top:2px}
+
+/* CARD GRID */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:56px}
+
+/* CARD */
+.card{background:#fff;border:1px solid var(--color-gray-300);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.card-dev{border-top:3px solid var(--color-green)}
+.card-design{border-top:3px solid var(--color-primary)}
+.card-content{border-top:3px solid var(--color-yellow)}
+.card-header{padding:20px 20px 16px;display:flex;gap:12px;align-items:flex-start}
+.card-icon{width:44px;height:44px;flex-shrink:0;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:18px}
+.icon-dev{background:var(--color-green-light);color:var(--color-green)}
+.icon-design{background:var(--color-primary-pastel);color:var(--color-primary)}
+.icon-content{background:var(--color-yellow-light);color:#7a5f00}
+.card-title{font-family:var(--font-title);font-size:1.0625rem;font-weight:700;color:var(--color-gray-900);line-height:1.3;margin-bottom:3px}
+.card-subtitle{font-size:.8125rem;color:var(--color-gray-700);line-height:1.4}
+.card-divider{height:1px;background:var(--color-gray-300);margin:0 20px}
+.card-body{padding:16px 20px 20px;flex:1;display:flex;flex-direction:column;gap:16px}
+
+/* RULE LIST */
+.rule-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.rule-list li{display:flex;gap:10px;align-items:flex-start;font-size:.875rem;color:var(--color-gray-700);line-height:1.55}
+.rule-dot{width:6px;height:6px;flex-shrink:0;border-radius:50%;margin-top:7px}
+.dot-dev{background:var(--color-green)}
+.dot-design{background:var(--color-primary)}
+.dot-content{background:#c9900a}
+
+/* CODE */
+.code-block{background:var(--color-gray-900);border-radius:var(--radius-md);padding:16px;font-family:"Courier New",monospace;font-size:12px;line-height:1.75;color:#cdd5e0;overflow-x:auto}
+.code-block .kw{color:#60a5fa}
+.code-block .attr{color:#86efac}
+.code-block .val{color:#fde047}
+.code-block .cm{color:#9ca3af;font-style:italic}
+
+/* FORMULA */
+.formula-box{background:var(--color-yellow-light);border:2px solid var(--color-yellow);border-radius:var(--radius-md);padding:16px}
+.formula-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#7a5f00;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.formula-text{font-family:var(--font-title);font-size:1rem;font-weight:700;color:var(--color-gray-900);line-height:1.4}
+.formula-sub{margin-top:8px;font-size:.75rem;color:var(--color-gray-700);font-style:italic}
+
+/* COMPARE */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.compare-item{padding:12px 14px;border-radius:var(--radius-md);font-size:.875rem}
+.compare-bad{background:var(--color-red-light);border-left:3px solid var(--color-red)}
+.compare-good{background:var(--color-green-light);border-left:3px solid var(--color-green)}
+.compare-label{font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.label-bad{color:var(--color-red)}
+.label-good{color:var(--color-green)}
+.compare-item p{color:var(--color-gray-700);line-height:1.5}
+.compare-item u{text-decoration-color:var(--color-red)}
+.compare-item em{color:var(--color-primary);font-style:normal;text-decoration:underline}
+
+/* CHECKLIST */
+.checklist-section{background:#fff;border:1px solid var(--color-gray-300);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:32px;margin-bottom:56px}
+.checklist-title{font-family:var(--font-title);font-size:1.25rem;font-weight:700;color:var(--color-gray-900);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.checklist-title i{color:var(--color-primary)}
+.checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+.check-col-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.check-col-label.dev{color:var(--color-green)}
+.check-col-label.design{color:var(--color-primary)}
+.check-col-label.content{color:#7a5f00}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.check-list li{display:flex;gap:10px;align-items:flex-start;font-size:.875rem;color:var(--color-gray-700);line-height:1.5}
+.check-list li i{font-size:13px;margin-top:2px;flex-shrink:0}
+.dev-icon{color:var(--color-green)}
+.design-icon{color:var(--color-primary)}
+.content-icon{color:#c9900a}
+
+/* SEP */
+.section-sep{height:1px;background:var(--color-gray-300);margin:0 0 48px}
+
+/* FOOTER */
+footer{background:var(--color-primary-dark);color:rgba(255,255,255,.7);text-align:center;padding:32px 40px;font-size:.875rem;line-height:2}
+footer a{color:var(--color-yellow);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer strong{color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:680px){
+  .site-header{padding:48px 20px 40px}
+  main{padding:36px 20px 60px}
+  .nav-inner{padding:0 12px}
+  .card-grid{grid-template-columns:1fr}
+  .compare-grid{grid-template-columns:1fr}
+  .checklist-grid{grid-template-columns:1fr}
+  .section-head{flex-direction:column;align-items:flex-start;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Ir para o conteudo principal</a>
+
+<header class="site-header" role="banner">
+  <div class="header-inner">
+
+    <h1>Manual de <span>Acessibilidade</span><br>Digital</h1>
+    <p class="header-desc">Boas praticas organizadas por tema para times de design e desenvolvimento construirem servicos digitais mais inclusivos e acessiveis.</p>
+    <div class="header-tags">
+      <span class="tag tag-dev"><i class="fa-solid fa-code" aria-hidden="true"></i> Desenvolvimento</span>
+      <span class="tag tag-design"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i> Design</span>
+      <span class="tag tag-content"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Conteudo</span>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Secoes do manual">
+  <div class="nav-inner">
+    <a href="#dev" class="nav-dev"><i class="fa-solid fa-code" aria-hidden="true"></i> Desenvolvimento</a>
+    <a href="#design" class="nav-design"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i> Design</a>
+    <a href="#conteudo" class="nav-content"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Conteudo</a>
+    <a href="#checklist" class="nav-check"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Checklist</a>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- DESENVOLVIMENTO -->
+<section id="dev" aria-labelledby="dev-h2">
+  <div class="section-head">
+    <span class="section-badge badge-dev"><i class="fa-solid fa-code" aria-hidden="true"></i> Desenvolvedor</span>
+    <div>
+      <h2 id="dev-h2">Desenvolvimento acessivel</h2>
+      <p>Codigo semantico, estruturado e compativel com tecnologias assistivas.</p>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <article class="card card-dev">
+      <div class="card-header">
+        <div class="card-icon icon-dev" aria-hidden="true"><i class="fa-solid fa-image"></i></div>
+        <div>
+          <div class="card-title">Descricao de imagens</div>
+          <div class="card-subtitle">Atributo <code>alt</code> correto para cada tipo de imagem.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Imagens com conteudo (fotos, graficos, icones funcionais) devem ter <code>alt</code> descritivo.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Imagens decorativas usam <code>alt=""</code> para serem ignoradas por leitores de tela.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Prefira inserir imagens decorativas via CSS.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>O <code>alt</code> nao aparece visualmente &mdash; e lido quando o usuario navega pelo teclado.</li>
+        </ul>
+        <div class="code-block">
+<span class="cm">&lt;!-- Imagem com conteudo --&gt;</span>
+<span class="kw">&lt;img</span> <span class="attr">src</span>=<span class="val">"grafico.png"</span>
+     <span class="attr">alt</span>=<span class="val">"Grafico de barras: vendas cresceram 30% em 2024"</span><span class="kw">&gt;</span>
+
+<span class="cm">&lt;!-- Imagem decorativa --&gt;</span>
+<span class="kw">&lt;img</span> <span class="attr">src</span>=<span class="val">"divisor.svg"</span>
+     <span class="attr">alt</span>=<span class="val">""</span>
+     <span class="attr">role</span>=<span class="val">"presentation"</span><span class="kw">&gt;</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card-dev">
+      <div class="card-header">
+        <div class="card-icon icon-dev" aria-hidden="true"><i class="fa-solid fa-heading"></i></div>
+        <div>
+          <div class="card-title">Hierarquia de cabecalhos</div>
+          <div class="card-subtitle">Estrutura logica com <code>h1</code>&ndash;<code>h6</code> para navegacao rapida.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Use apenas um <code>&lt;h1&gt;</code> por pagina &mdash; titulo principal.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Nao pule niveis: de <code>h2</code> direto para <code>h4</code> e incorreto.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Nao use cabecalhos apenas para estilo &mdash; use CSS para formatacao visual.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Leitores de tela listam cabecalhos para navegacao: a hierarquia deve ser logica.</li>
+        </ul>
+        <div class="code-block">
+<span class="kw">&lt;h1&gt;</span>Titulo da pagina<span class="kw">&lt;/h1&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>Secao principal<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;h3&gt;</span>Subsecao<span class="kw">&lt;/h3&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>Outra secao<span class="kw">&lt;/h2&gt;</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card-dev">
+      <div class="card-header">
+        <div class="card-icon icon-dev" aria-hidden="true"><i class="fa-solid fa-link"></i></div>
+        <div>
+          <div class="card-title">Links e atalhos de navegacao</div>
+          <div class="card-subtitle">Links descritivos e atalhos para pular blocos repetitivos.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>O texto do link deve descrever o destino mesmo fora do contexto do paragrafo.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Inclua link &ldquo;Ir para o conteudo&rdquo; visivel ao foco (skip navigation).</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Links externos devem indicar isso visualmente e via <code>aria-label</code>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>O estado <code>:focus</code> deve ser visivel com contraste minimo 3:1.</li>
+        </ul>
+        <div class="code-block">
+<span class="cm">&lt;!-- Skip link --&gt;</span>
+<span class="kw">&lt;a</span> <span class="attr">href</span>=<span class="val">"#conteudo"</span>
+   <span class="attr">class</span>=<span class="val">"skip-link"</span><span class="kw">&gt;</span>Ir para o conteudo<span class="kw">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Link externo --&gt;</span>
+<span class="kw">&lt;a</span> <span class="attr">href</span>=<span class="val">"..."</span>
+   <span class="attr">aria-label</span>=<span class="val">"WCAG 2.2 (abre nova aba)"</span>
+   <span class="attr">target</span>=<span class="val">"_blank"</span><span class="kw">&gt;</span>WCAG 2.2 &#8599;<span class="kw">&lt;/a&gt;</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card-dev">
+      <div class="card-header">
+        <div class="card-icon icon-dev" aria-hidden="true"><i class="fa-solid fa-table-list"></i></div>
+        <div>
+          <div class="card-title">Estrutura de formularios</div>
+          <div class="card-subtitle">Elementos e associacoes corretas para campos acessiveis.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Cada campo deve ter um <code>&lt;label&gt;</code> associado via <code>for</code>/<code>id</code>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Use <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> para agrupar radios e checkboxes.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Mensagens de erro devem ser associadas ao campo via <code>aria-describedby</code>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Use o atributo <code>autocomplete</code> em campos comuns (nome, e-mail, endereco).</li>
+        </ul>
+        <div class="code-block">
+<span class="kw">&lt;label</span> <span class="attr">for</span>=<span class="val">"email"</span><span class="kw">&gt;</span>E-mail<span class="kw">&lt;/label&gt;</span>
+<span class="kw">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span>
+       <span class="attr">id</span>=<span class="val">"email"</span>
+       <span class="attr">aria-describedby</span>=<span class="val">"email-erro"</span>
+       <span class="attr">autocomplete</span>=<span class="val">"email"</span><span class="kw">&gt;</span>
+<span class="kw">&lt;span</span> <span class="attr">id</span>=<span class="val">"email-erro"</span>
+      <span class="attr">role</span>=<span class="val">"alert"</span><span class="kw">&gt;</span>E-mail invalido<span class="kw">&lt;/span&gt;</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card-dev">
+      <div class="card-header">
+        <div class="card-icon icon-dev" aria-hidden="true"><i class="fa-brands fa-html5"></i></div>
+        <div>
+          <div class="card-title">HTML semantico e padroes W3C</div>
+          <div class="card-subtitle">Codigo valido, limpo e com elementos corretos.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Use elementos semanticos: <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Evite elementos descontinuados: <code>&lt;font&gt;</code>, <code>&lt;center&gt;</code>, <code>&lt;marquee&gt;</code>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Declare o idioma: <code>&lt;html lang="pt-BR"&gt;</code>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Valide o HTML em <a href="https://validator.w3.org" target="_blank">validator.w3.org</a>.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Configure <code>&lt;meta charset="UTF-8"&gt;</code> e <code>&lt;meta name="viewport"&gt;</code>.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-dev">
+      <div class="card-header">
+        <div class="card-icon icon-dev" aria-hidden="true"><i class="fa-solid fa-gear"></i></div>
+        <div>
+          <div class="card-title">WAI-ARIA para conteudo dinamico</div>
+          <div class="card-subtitle">Roles, states e properties para componentes interativos.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Use <code>aria-live</code> para anunciar atualizacoes dinamicas (alertas, buscas).</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Modais, abas e acordeoes precisam de <code>role</code>, <code>aria-expanded</code> e gestao de foco.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Prefira HTML nativo &mdash; use ARIA apenas quando necessario.</li>
+          <li><span class="rule-dot dot-dev" aria-hidden="true"></span>Nunca remova o <code>outline</code> de foco sem substituir por algo visivel.</li>
+        </ul>
+        <div class="code-block">
+<span class="kw">&lt;button</span>
+  <span class="attr">aria-expanded</span>=<span class="val">"false"</span>
+  <span class="attr">aria-controls</span>=<span class="val">"menu-principal"</span><span class="kw">&gt;</span>
+  Menu
+<span class="kw">&lt;/button&gt;</span>
+
+<span class="kw">&lt;div</span> <span class="attr">aria-live</span>=<span class="val">"polite"</span>
+     <span class="attr">aria-atomic</span>=<span class="val">"true"</span><span class="kw">&gt;</span>
+  <span class="cm">&lt;!-- conteudo dinamico --&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- DESIGN -->
+<section id="design" aria-labelledby="design-h2">
+  <div class="section-head">
+    <span class="section-badge badge-design"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i> Designer</span>
+    <div>
+      <h2 id="design-h2">Design inclusivo</h2>
+      <p>Cor, tipografia, layout e interacao que funcionam para todos.</p>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <article class="card card-design">
+      <div class="card-header">
+        <div class="card-icon icon-design" aria-hidden="true"><i class="fa-solid fa-palette"></i></div>
+        <div>
+          <div class="card-title">Cores e contraste</div>
+          <div class="card-subtitle">Proporcoes minimas conforme WCAG 2.2 nivel AA.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Texto normal: contraste minimo <strong>4,5:1</strong> em relacao ao fundo.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Texto grande (18px+ ou 14px+ negrito): minimo <strong>3:1</strong>.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Elementos de UI e graficos informativos: minimo <strong>3:1</strong>.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Nunca use cor como unico meio de transmitir informacao &mdash; combine com icone ou texto.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Ferramenta: <a href="https://webaim.org/resources/contrastchecker/" target="_blank">WebAIM Contrast Checker</a>.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-design">
+      <div class="card-header">
+        <div class="card-icon icon-design" aria-hidden="true"><i class="fa-solid fa-font"></i></div>
+        <div>
+          <div class="card-title">Tipografia legivel</div>
+          <div class="card-subtitle">Tamanhos e formatacoes que facilitam a leitura.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Corpo de texto: minimo <strong>16px</strong> &mdash; use <code>rem</code> para respeitar o zoom do navegador.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span><code>line-height</code> minimo de <strong>1,5</strong> para o corpo de texto.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Evite italico em blocos de texto &mdash; dificulta leitura para dislexia.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Nao justifique texto &mdash; o espacamento irregular cria dificuldade de leitura.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Prefira alinhamento a esquerda.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-design">
+      <div class="card-header">
+        <div class="card-icon icon-design" aria-hidden="true"><i class="fa-solid fa-arrow-pointer"></i></div>
+        <div>
+          <div class="card-title">Links identificaveis</div>
+          <div class="card-subtitle">Diferenciacao clara entre links e texto comum.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Links inline devem ter sublinhado ou outro indicador alem da cor.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Links externos: indicacao visual (&#8599;) e anuncio para leitores de tela.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Estado <code>:focus</code> visivel com outline de pelo menos 2px e contraste 3:1.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Area de toque minima: <strong>44&times;44px</strong> (WCAG 2.5.5).</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-design">
+      <div class="card-header">
+        <div class="card-icon icon-design" aria-hidden="true"><i class="fa-solid fa-icons"></i></div>
+        <div>
+          <div class="card-title">Icones e elementos informativos</div>
+          <div class="card-subtitle">Todo icone funcional precisa de rotulo textual.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Icones que transmitem informacao devem ter texto visivel ou <code>aria-label</code>.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Icones decorativos devem ter <code>aria-hidden="true"</code>.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Nao confie so em cor para estados: sucesso, erro, aviso &mdash; use icone + texto.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Tooltips devem ser acessiveis via teclado e leitores de tela.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-design">
+      <div class="card-header">
+        <div class="card-icon icon-design" aria-hidden="true"><i class="fa-solid fa-ruler-combined"></i></div>
+        <div>
+          <div class="card-title">Espacamento e layout</div>
+          <div class="card-subtitle">Relacoes visuais claras entre elementos.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Espacamento consistente deixa claro quais conteudos sao relacionados.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span><code>letter-spacing</code> minimo 0,12em; <code>word-spacing</code> minimo 0,16em.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Layout responsivo: funcionar com zoom de 400% sem scroll horizontal.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Largura ideal de coluna de texto: 70&ndash;80 caracteres (~600&ndash;700px).</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-design">
+      <div class="card-header">
+        <div class="card-icon icon-design" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div>
+          <div class="card-title">Animacoes e movimento</div>
+          <div class="card-subtitle">Controle de movimento para quem tem sensibilidade vestibular.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>O usuario deve poder pausar, parar ou ocultar animacoes automaticas.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Use <code>prefers-reduced-motion</code> para desativar animacoes configuradas no SO.</li>
+          <li><span class="rule-dot dot-design" aria-hidden="true"></span>Conteudo que pisca mais de 3 vezes por segundo pode causar convulsoes &mdash; evite.</li>
+        </ul>
+        <div class="code-block">
+<span class="attr">@media</span> (prefers-reduced-motion: reduce) {
+  <span class="kw">*</span> {
+    <span class="attr">animation-duration</span>: <span class="val">0.01ms</span> !important;
+    <span class="attr">transition-duration</span>: <span class="val">0.01ms</span> !important;
+  }
+}
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- CONTEUDO -->
+<section id="conteudo" aria-labelledby="content-h2">
+  <div class="section-head">
+    <span class="section-badge badge-content"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Conteudo</span>
+    <div>
+      <h2 id="content-h2">Texto, midia e linguagem</h2>
+      <p>Conteudo claro, inclusivo e compativel com diferentes necessidades.</p>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <article class="card card-content">
+      <div class="card-header">
+        <div class="card-icon icon-content" aria-hidden="true"><i class="fa-solid fa-camera"></i></div>
+        <div>
+          <div class="card-title">Descricao de imagens e midia</div>
+          <div class="card-subtitle">Textos alternativos para todo conteudo nao-textual.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Fotos, ilustracoes, tabelas, graficos e GIFs devem ter descricao textual.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Evite redundancia: &ldquo;A foto ilustra&rdquo; e pleonasmo &mdash; seja direto e objetivo.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Evite adjetivos de juizo de valor (bonito, feio, bom, mau).</li>
+        </ul>
+        <div class="formula-box">
+          <div class="formula-label"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Formula para descrever imagens</div>
+          <div class="formula-text">Formato + Sujeito + Cenario + Contexto + Acao</div>
+          <div class="formula-sub">Completa: o que/quem + onde + como + faz o que + como + quando + de onde</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card-content">
+      <div class="card-header">
+        <div class="card-icon icon-content" aria-hidden="true"><i class="fa-solid fa-film"></i></div>
+        <div>
+          <div class="card-title">Video e audio acessiveis</div>
+          <div class="card-subtitle">Legendas, Libras e transcricoes para todos.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Todo video com fala deve ter legenda (para surdos alfabetizados em portugues).</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Inclua janela de Libras &mdash; avatar ou interprete &mdash; para surdos nao oralizados.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Podcasts e audios devem ter transcricao em texto.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Videos devem ter audiodescricao que contextualize sem atrapalhar o audio original.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-content">
+      <div class="card-header">
+        <div class="card-icon icon-content" aria-hidden="true"><i class="fa-solid fa-pencil"></i></div>
+        <div>
+          <div class="card-title">Linguagem clara e simples</div>
+          <div class="card-subtitle">Textos compreensiveis para o maior numero de pessoas.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Use frases curtas, paragrafos objetivos e ordem direta (sujeito + verbo + complemento).</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Prefira voz ativa a passiva.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Evite figuras de linguagem, girias e termos tecnicos sem explicacao.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Na primeira ocorrencia, escreva siglas por extenso.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card card-content">
+      <div class="card-header">
+        <div class="card-icon icon-content" aria-hidden="true"><i class="fa-solid fa-paperclip"></i></div>
+        <div>
+          <div class="card-title">Links descritivos no texto</div>
+          <div class="card-subtitle">Textos de link que facam sentido fora do contexto.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Evite &ldquo;clique aqui&rdquo;, &ldquo;saiba mais&rdquo; isolados &mdash; cegos navegam listando so os links.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Prefira: &ldquo;Acesse o site [nome]&rdquo; ou &ldquo;Leia o relatorio de acessibilidade 2024&rdquo;.</li>
+        </ul>
+        <div class="compare-grid">
+          <div class="compare-item compare-bad">
+            <div class="compare-label label-bad"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Evite</div>
+            <p>Acesse a documentacao <u>clicando aqui</u>.</p>
+          </div>
+          <div class="compare-item compare-good">
+            <div class="compare-label label-good"><i class="fa-solid fa-check" aria-hidden="true"></i> Use</div>
+            <p>Acesse a <em>documentacao WCAG 2.2</em>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card card-content">
+      <div class="card-header">
+        <div class="card-icon icon-content" aria-hidden="true"><i class="fa-solid fa-share-nodes"></i></div>
+        <div>
+          <div class="card-title">Redes sociais</div>
+          <div class="card-subtitle">Boas praticas para posts acessiveis.</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <ul class="rule-list">
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Adicione texto alternativo as imagens postadas &mdash; Instagram, Facebook e X oferecem esse recurso.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Use CamelCase em hashtags: <code>#AcessibilidadeDigital</code> em vez de <code>#acessibilidadedigital</code>.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Descreva GIFs e stickers informativos na legenda da publicacao.</li>
+          <li><span class="rule-dot dot-content" aria-hidden="true"></span>Evite excesso de emojis no meio do texto &mdash; leitores de tela os verbalizam todos.</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" aria-labelledby="checklist-h2">
+  <div class="checklist-section">
+    <h2 class="checklist-title" id="checklist-h2">
+      <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+      Checklist rapido para o dia a dia
+    </h2>
+    <div class="checklist-grid">
+      <div>
+        <div class="check-col-label dev"><i class="fa-solid fa-code" aria-hidden="true"></i> Desenvolvedor</div>
+        <ul class="check-list">
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> Todas as imagens tem <code>alt</code> correto?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> Existe so um <code>&lt;h1&gt;</code> e a hierarquia e logica?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> Todos os campos de formulario tem <code>&lt;label&gt;</code>?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> O site funciona 100% pelo teclado?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> A pagina tem <code>lang</code> declarado?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> O HTML passou no validador W3C?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> Componentes dinamicos usam ARIA correto?</li>
+          <li><i class="fa-regular fa-square dev-icon" aria-hidden="true"></i> Skip link esta implementado?</li>
+        </ul>
+      </div>
+      <div>
+        <div class="check-col-label design"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i> Designer</div>
+        <ul class="check-list">
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Contraste de texto &ge; 4,5:1 (ou 3:1 para texto grande)?</li>
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Links se diferenciam do texto alem da cor?</li>
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Area de toque minima 44&times;44px?</li>
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Estado de foco visivel e com contraste adequado?</li>
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Animacoes podem ser desativadas?</li>
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Icones funcionais tem rotulo textual?</li>
+          <li><i class="fa-regular fa-square design-icon" aria-hidden="true"></i> Layout funciona com zoom de 200%?</li>
+        </ul>
+      </div>
+      <div>
+        <div class="check-col-label content"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Conteudo</div>
+        <ul class="check-list">
+          <li><i class="fa-regular fa-square content-icon" aria-hidden="true"></i> Todas as imagens tem descricao contextual?</li>
+          <li><i class="fa-regular fa-square content-icon" aria-hidden="true"></i> Videos tem legenda e janela de Libras?</li>
+          <li><i class="fa-regular fa-square content-icon" aria-hidden="true"></i> Podcasts tem transcricao em texto?</li>
+          <li><i class="fa-regular fa-square content-icon" aria-hidden="true"></i> Links tem texto descritivo do destino?</li>
+          <li><i class="fa-regular fa-square content-icon" aria-hidden="true"></i> Siglas foram explicadas na primeira ocorrencia?</li>
+          <li><i class="fa-regular fa-square content-icon" aria-hidden="true"></i> Hashtags usam CamelCase?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>Manual de Acessibilidade Digital</strong><br>
+  Baseado nas boas praticas do <a href="https://mwpt.com.br/acessibilidade-digital/boas-praticas/" target="_blank">Movimento Web para Todos (MWPT)</a><br>
+  Visual conforme o <a href="https://www.gov.br/ds/" target="_blank">Padrao Digital de Governo &mdash; Design System</a><br>
+  Referencias: <a href="https://www.w3.org/TR/WCAG22/" target="_blank">WCAG 2.2</a> &middot; <a href="https://www.w3.org/TR/wai-aria/" target="_blank">WAI-ARIA</a> &middot; <a href="https://emag.governoeletronico.gov.br/" target="_blank">eMAG</a><br><br>
+  Elaborado por <strong>Cassia L Oliveira</strong>
+</footer>
+
+</body>
+</html>
